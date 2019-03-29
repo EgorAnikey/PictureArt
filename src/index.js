@@ -4,8 +4,13 @@
 
    'use strict';
 
-   let tabs = require('./parts/tabs.js');
-tabs();
+   let mainSlider = require('./parts/mainSlider.js'),
+   burgerMenu = require('./parts/burgerMenu.js');
+mainSlider();
+burgerMenu();
+
+
+
  });
  if ('NodeList' in window && !NodeList.prototype.forEach) {
    console.info('polyfill for IE11');
