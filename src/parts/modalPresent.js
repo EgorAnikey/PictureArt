@@ -10,6 +10,7 @@ function modalPresent() {
 
     modal.addEventListener('click', (e) => {
         if (e.target.classList.contains('popup-gift') || e.target.classList.contains('popup-close')) {
+            document.body.style.overflow = '';
             modal.style.display = 'none';
         }
     });
