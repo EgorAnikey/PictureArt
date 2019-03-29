@@ -24,12 +24,12 @@ function filter(headerClassName, tabClassName, infoContentClassName) {
     }
 
     info.addEventListener('click', function (event) {
-        hideTabContent();
-        let target = event.target,
-            classTarget = target.className;
-        if (target && !target.classList.contains('portfolio-menu')) {
+        let target = event.target;
+        if (target && target.tagName == 'LI') {
             for (let i = 0; i < tab.length; i++) {
                 if (target == tab[i]) {
+                    hideTabContent();
+                    let classTarget = target.className;
                     showTabContent(classTarget);
                     target.classList.add('active');
                     break;

@@ -341,13 +341,13 @@ function filter(headerClassName, tabClassName, infoContentClassName) {
   }
 
   info.addEventListener('click', function (event) {
-    hideTabContent();
-    var target = event.target,
-        classTarget = target.className;
+    var target = event.target;
 
-    if (target && !target.classList.contains('portfolio-menu')) {
+    if (target && target.tagName == 'LI') {
       for (var i = 0; i < tab.length; i++) {
         if (target == tab[i]) {
+          hideTabContent();
+          var classTarget = target.className;
           showTabContent(classTarget);
           target.classList.add('active');
           break;
