@@ -165,7 +165,7 @@ window.addEventListener('DOMContentLoaded', function () {
       showMoreStyles = __webpack_require__(/*! ./parts/showMoreStyles.js */ "./src/parts/showMoreStyles.js"),
       hoverImg = __webpack_require__(/*! ./parts/hoverImg.js */ "./src/parts/hoverImg.js"),
       filter = __webpack_require__(/*! ./parts/filter.js */ "./src/parts/filter.js"),
-      modal = __webpack_require__(/*! ./parts/modal.js */ "./src/parts/modal.js");
+      modalPresent = __webpack_require__(/*! ./parts/modalPresent.js */ "./src/parts/modalPresent.js");
 
   mainSlider();
   burgerMenu();
@@ -173,7 +173,7 @@ window.addEventListener('DOMContentLoaded', function () {
   showMoreStyles();
   hoverImg();
   filter('#portfolio .container', '.portfolio-menu li', '.portfolio-block');
-  modal();
+  modalPresent();
 });
 
 if ('NodeList' in window && !NodeList.prototype.forEach) {
@@ -453,14 +453,14 @@ module.exports = getmainSlider;
 
 /***/ }),
 
-/***/ "./src/parts/modal.js":
-/*!****************************!*\
-  !*** ./src/parts/modal.js ***!
-  \****************************/
+/***/ "./src/parts/modalPresent.js":
+/*!***********************************!*\
+  !*** ./src/parts/modalPresent.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function modal() {
+function modalPresent() {
   var modal = document.querySelector('.popup-gift'),
       img = document.querySelector('img');
   img.addEventListener('click', function () {
@@ -475,7 +475,7 @@ function modal() {
   });
 }
 
-module.exports = modal;
+module.exports = modalPresent;
 
 /***/ }),
 

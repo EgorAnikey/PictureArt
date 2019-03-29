@@ -1,4 +1,4 @@
-function modal() {
+function modalPresent() {
     let modal = document.querySelector('.popup-gift'),
         img = document.querySelector('img');
 
@@ -14,4 +14,4 @@ function modal() {
         }
     });
 }
-module.exports = modal;
+module.exports = modalPresent;

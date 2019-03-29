@@ -5,19 +5,19 @@
    'use strict';
 
    let mainSlider = require('./parts/mainSlider.js'),
-   burgerMenu = require('./parts/burgerMenu.js'),
-   feedbackSlider = require('./parts/feedbackSlider.js'),
-   showMoreStyles = require('./parts/showMoreStyles.js'),
-   hoverImg = require('./parts/hoverImg.js'),
-   filter = require('./parts/filter.js'),
-   modal = require('./parts/modal.js');
-mainSlider();
-burgerMenu();
-feedbackSlider();
-showMoreStyles();
-hoverImg();
-filter('#portfolio .container', '.portfolio-menu li', '.portfolio-block');
-modal();
+     burgerMenu = require('./parts/burgerMenu.js'),
+     feedbackSlider = require('./parts/feedbackSlider.js'),
+     showMoreStyles = require('./parts/showMoreStyles.js'),
+     hoverImg = require('./parts/hoverImg.js'),
+     filter = require('./parts/filter.js'),
+     modalPresent = require('./parts/modalPresent.js');
+   mainSlider();
+   burgerMenu();
+   feedbackSlider();
+   showMoreStyles();
+   hoverImg();
+   filter('#portfolio .container', '.portfolio-menu li', '.portfolio-block');
+   modalPresent();
 
 
  });
