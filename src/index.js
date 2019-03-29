@@ -7,12 +7,15 @@
    let mainSlider = require('./parts/mainSlider.js'),
    burgerMenu = require('./parts/burgerMenu.js'),
    feedbackSlider = require('./parts/feedbackSlider.js'),
-   showMoreStyles = require('./parts/showMoreStyles.js');
+   showMoreStyles = require('./parts/showMoreStyles.js'),
+   hoverImg = require('./parts/hoverImg.js'),
+   filter = require('./parts/filter.js');
 mainSlider();
 burgerMenu();
 feedbackSlider();
 showMoreStyles();
-
+hoverImg();
+filter('#portfolio .container', '.portfolio-menu li', '.portfolio-block');
 
 
  });
