@@ -5,9 +5,13 @@
    'use strict';
 
    let mainSlider = require('./parts/mainSlider.js'),
-   burgerMenu = require('./parts/burgerMenu.js');
+   burgerMenu = require('./parts/burgerMenu.js'),
+   feedbackSlider = require('./parts/feedbackSlider.js'),
+   showMoreStyles = require('./parts/showMoreStyles.js');
 mainSlider();
 burgerMenu();
+feedbackSlider();
+showMoreStyles();
 
 
 

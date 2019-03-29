@@ -160,10 +160,14 @@ window.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
   var mainSlider = __webpack_require__(/*! ./parts/mainSlider.js */ "./src/parts/mainSlider.js"),
-      burgerMenu = __webpack_require__(/*! ./parts/burgerMenu.js */ "./src/parts/burgerMenu.js");
+      burgerMenu = __webpack_require__(/*! ./parts/burgerMenu.js */ "./src/parts/burgerMenu.js"),
+      feedbackSlider = __webpack_require__(/*! ./parts/feedbackSlider.js */ "./src/parts/feedbackSlider.js"),
+      showMoreStyles = __webpack_require__(/*! ./parts/showMoreStyles.js */ "./src/parts/showMoreStyles.js");
 
   mainSlider();
   burgerMenu();
+  feedbackSlider();
+  showMoreStyles();
 });
 
 if ('NodeList' in window && !NodeList.prototype.forEach) {
@@ -214,6 +218,84 @@ function burgerMenu() {
 }
 
 module.exports = burgerMenu;
+
+/***/ }),
+
+/***/ "./src/parts/feedbackSlider.js":
+/*!*************************************!*\
+  !*** ./src/parts/feedbackSlider.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function feedbackSlider() {
+  // console.log(1);
+  var slideIndex = 0,
+      slides = document.querySelectorAll('.feedback-slider-item'),
+      mainSlider = document.querySelector('.feedback-slider'),
+      temp = 0; // mainSlider.style.overflow = 'hidden';
+
+  function animation() {
+    slides[temp].style.display = 'block';
+    var i = 1;
+    setInterval(function () {
+      slides.forEach(function (item) {
+        return item.style.display = 'none';
+      });
+      slides[temp].style.display = 'block'; // mainSlider.style.height = slides[temp].offsetHeight + 'px';
+
+      var slideoff = slides[temp];
+      temp--;
+
+      if (temp < 0) {
+        temp = slides.length - 1;
+        i = 1;
+      }
+
+      slides[temp].style.display = 'block';
+      var slideon = slides[temp];
+      var top = -slideon.offsetWidth * i;
+      var a = -slideon.offsetWidth;
+      var down = 0;
+      slideon.style.transform = "translate(".concat(-slideon.offsetWidth * i + 'px', ", ").concat(-slideon.offsetHeight * i + 'px', ")"); // console.log(slideon);
+      // slideoff.style.transform = `translateX(${-slideoff.offsetWidth*i + 'px'})`;
+
+      if (temp == 0) {
+        a = 0;
+        down = -slideon.offsetWidth;
+      }
+
+      var id = setInterval(start, 5);
+
+      function start() {
+        top += 5;
+        down += 5;
+
+        if (top < a) {
+          slideon.style.transform = "translateX(".concat(top + 'px', ")");
+          slideoff.style.transform = "translateX(".concat(down + 'px', ")");
+        } else {
+          slideoff.style.transform = "translateX(0)";
+          slideoff.style.display = 'none';
+          slideon.style.transform = "translateX(0)";
+          i = 2;
+          clearInterval(id);
+        }
+      }
+    }, 3000);
+  }
+
+  showSlides();
+
+  function showSlides() {
+    slides.forEach(function (item) {
+      return item.style.display = 'none';
+    });
+    animation();
+  }
+}
+
+module.exports = feedbackSlider;
 
 /***/ }),
 
@@ -291,6 +373,29 @@ function getmainSlider() {
 }
 
 module.exports = getmainSlider;
+
+/***/ }),
+
+/***/ "./src/parts/showMoreStyles.js":
+/*!*************************************!*\
+  !*** ./src/parts/showMoreStyles.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function showMoreStyles() {
+  var showMoreStyles = document.querySelector('#styles button'),
+      carts = document.querySelectorAll('#styles .row > div');
+  showMoreStyles.addEventListener('click', function () {
+    carts.forEach(function (item) {
+      item.removeAttribute('class');
+      item.classList.add('col-sm-3', 'col-sm-offset-0', 'col-xs-10', 'col-xs-offset-1');
+      showMoreStyles.style.display = 'none';
+    });
+  });
+}
+
+module.exports = showMoreStyles;
 
 /***/ })
 
