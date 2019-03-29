@@ -9,13 +9,15 @@
    feedbackSlider = require('./parts/feedbackSlider.js'),
    showMoreStyles = require('./parts/showMoreStyles.js'),
    hoverImg = require('./parts/hoverImg.js'),
-   filter = require('./parts/filter.js');
+   filter = require('./parts/filter.js'),
+   modal = require('./parts/modal.js');
 mainSlider();
 burgerMenu();
 feedbackSlider();
 showMoreStyles();
 hoverImg();
 filter('#portfolio .container', '.portfolio-menu li', '.portfolio-block');
+modal();
 
 
  });

@@ -164,7 +164,8 @@ window.addEventListener('DOMContentLoaded', function () {
       feedbackSlider = __webpack_require__(/*! ./parts/feedbackSlider.js */ "./src/parts/feedbackSlider.js"),
       showMoreStyles = __webpack_require__(/*! ./parts/showMoreStyles.js */ "./src/parts/showMoreStyles.js"),
       hoverImg = __webpack_require__(/*! ./parts/hoverImg.js */ "./src/parts/hoverImg.js"),
-      filter = __webpack_require__(/*! ./parts/filter.js */ "./src/parts/filter.js");
+      filter = __webpack_require__(/*! ./parts/filter.js */ "./src/parts/filter.js"),
+      modal = __webpack_require__(/*! ./parts/modal.js */ "./src/parts/modal.js");
 
   mainSlider();
   burgerMenu();
@@ -172,6 +173,7 @@ window.addEventListener('DOMContentLoaded', function () {
   showMoreStyles();
   hoverImg();
   filter('#portfolio .container', '.portfolio-menu li', '.portfolio-block');
+  modal();
 });
 
 if ('NodeList' in window && !NodeList.prototype.forEach) {
@@ -448,6 +450,32 @@ function getmainSlider() {
 }
 
 module.exports = getmainSlider;
+
+/***/ }),
+
+/***/ "./src/parts/modal.js":
+/*!****************************!*\
+  !*** ./src/parts/modal.js ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function modal() {
+  var modal = document.querySelector('.popup-gift'),
+      img = document.querySelector('img');
+  img.addEventListener('click', function () {
+    modal.style.display = 'block';
+    img.style.display = 'none';
+    document.body.style.overflow = 'hidden';
+  });
+  modal.addEventListener('click', function (e) {
+    if (e.target.classList.contains('popup-gift') || e.target.classList.contains('popup-close')) {
+      modal.style.display = 'none';
+    }
+  });
+}
+
+module.exports = modal;
 
 /***/ }),
 
