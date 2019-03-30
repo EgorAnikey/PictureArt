@@ -15,7 +15,7 @@
      accordion = require('./parts/accordion.js');
    mainSlider();
    burgerMenu();
-   feedbackSlider();
+  //  feedbackSlider();
    showMoreStyles();
    hoverImg();
    filter('#portfolio .container', '.portfolio-menu li', '.portfolio-block');
