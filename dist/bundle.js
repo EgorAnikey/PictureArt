@@ -165,7 +165,8 @@ window.addEventListener('DOMContentLoaded', function () {
       showMoreStyles = __webpack_require__(/*! ./parts/showMoreStyles.js */ "./src/parts/showMoreStyles.js"),
       hoverImg = __webpack_require__(/*! ./parts/hoverImg.js */ "./src/parts/hoverImg.js"),
       filter = __webpack_require__(/*! ./parts/filter.js */ "./src/parts/filter.js"),
-      modalPresent = __webpack_require__(/*! ./parts/modalPresent.js */ "./src/parts/modalPresent.js");
+      modalPresent = __webpack_require__(/*! ./parts/modalPresent.js */ "./src/parts/modalPresent.js"),
+      calc = __webpack_require__(/*! ./parts/calc.js */ "./src/parts/calc.js");
 
   mainSlider();
   burgerMenu();
@@ -174,6 +175,7 @@ window.addEventListener('DOMContentLoaded', function () {
   hoverImg();
   filter('#portfolio .container', '.portfolio-menu li', '.portfolio-block');
   modalPresent();
+  calc();
 });
 
 if ('NodeList' in window && !NodeList.prototype.forEach) {
@@ -224,6 +226,149 @@ function burgerMenu() {
 }
 
 module.exports = burgerMenu;
+
+/***/ }),
+
+/***/ "./src/parts/calc.js":
+/*!***************************!*\
+  !*** ./src/parts/calc.js ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function calc() {
+  var Browser = {
+    IE: /trident/gi.test(navigator.userAgent) || /msie/gi.test(navigator.userAgent),
+    Mobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)
+  };
+  var size = document.getElementById('size'),
+      material = document.getElementById('material'),
+      option = document.getElementById('options'),
+      promocode = document.querySelector('.promocode'),
+      totalValue = document.querySelector('.calc-price'),
+      total = 0;
+
+  function animateTotalValue(value) {
+    var _loop = function _loop(_i) {
+      var id = setTimeout(function () {
+        if (_i > 5000) {
+          _i = value;
+          clearInterval(id);
+        }
+
+        totalValue.innerHTML = _i;
+      }, 10);
+
+      if (_i > 5000) {
+        i = _i;
+        return "break";
+      }
+
+      i = _i;
+    };
+
+    for (var i = 0; i <= value; i++) {
+      var _ret = _loop(i);
+
+      if (_ret === "break") break;
+    }
+  }
+
+  promocode.addEventListener('input', function () {
+    var sizeSelectedIndex = size.options.selectedIndex,
+        materialSelectedIndex = material.options.selectedIndex,
+        optionSelectedIndex = option.options.selectedIndex,
+        promo = 1;
+
+    if (this.value == "IWANTPOPART") {
+      promo = 0.7;
+    }
+
+    console.log(sizeSelectedIndex);
+    console.log(materialSelectedIndex);
+
+    if (sizeSelectedIndex == 0 || materialSelectedIndex == 0) {
+      totalValue.textContent = 'Для расчета нужно выбрать размер картины и материал картины';
+    } else if (Browser.IE) {
+      // Do something related to Internet Explorer.
+      totalValue.textContent = (sizeSelectedIndex * materialSelectedIndex * (optionSelectedIndex + 1) * promo * 1000).toFixed();
+    } else {
+      total = (sizeSelectedIndex * materialSelectedIndex * (optionSelectedIndex + 1) * promo * 1000).toFixed();
+      animateTotalValue(total);
+    }
+  });
+  size.addEventListener('change', function () {
+    var sizeSelectedIndex = this.options.selectedIndex,
+        materialSelectedIndex = material.options.selectedIndex,
+        optionSelectedIndex = option.options.selectedIndex,
+        promo = 1;
+
+    if (promocode.value == "IWANTPOPART") {
+      promo = 0.7;
+    }
+
+    console.log(sizeSelectedIndex);
+    console.log(materialSelectedIndex);
+
+    if (sizeSelectedIndex == 0 || materialSelectedIndex == 0) {
+      totalValue.textContent = 'Для расчета нужно выбрать размер картины и материал картины';
+    } else if (Browser.IE) {
+      // Do something related to Internet Explorer.
+      totalValue.textContent = (sizeSelectedIndex * materialSelectedIndex * (optionSelectedIndex + 1) * promo * 1000).toFixed();
+    } else {
+      total = (sizeSelectedIndex * materialSelectedIndex * (optionSelectedIndex + 1) * promo * 1000).toFixed();
+      animateTotalValue(total);
+    }
+  });
+  material.addEventListener('change', function () {
+    var materialSelectedIndex = this.options.selectedIndex,
+        sizeSelectedIndex = size.options.selectedIndex,
+        optionSelectedIndex = option.options.selectedIndex,
+        promo = 1;
+
+    if (promocode.value == "IWANTPOPART") {
+      promo = 0.7;
+    }
+
+    console.log(sizeSelectedIndex);
+    console.log(materialSelectedIndex);
+
+    if (sizeSelectedIndex == 0 || materialSelectedIndex == 0) {
+      totalValue.textContent = 'Для расчета нужно выбрать размер картины и материал картины';
+    } else if (Browser.IE) {
+      // Do something related to Internet Explorer.
+      totalValue.textContent = (sizeSelectedIndex * materialSelectedIndex * (optionSelectedIndex + 1) * promo * 1000).toFixed();
+    } else {
+      total = (sizeSelectedIndex * materialSelectedIndex * (optionSelectedIndex + 1) * promo * 1000).toFixed();
+      animateTotalValue(total);
+    }
+  });
+  options.addEventListener('change', function () {
+    var optionSelectedIndex = this.options.selectedIndex,
+        sizeSelectedIndex = size.options.selectedIndex,
+        materialSelectedIndex = material.options.selectedIndex,
+        promo = 1;
+
+    if (promocode.value == "IWANTPOPART") {
+      promo = 0.7;
+    }
+
+    console.log(sizeSelectedIndex);
+    console.log(materialSelectedIndex);
+
+    if (sizeSelectedIndex == 0 || materialSelectedIndex == 0) {
+      totalValue.textContent = 'Для расчета нужно выбрать размер картины и материал картины';
+    } else if (Browser.IE) {
+      // Do something related to Internet Explorer.
+      totalValue.textContent = (sizeSelectedIndex * materialSelectedIndex * (optionSelectedIndex + 1) * promo * 1000).toFixed();
+    } else {
+      total = (sizeSelectedIndex * materialSelectedIndex * (optionSelectedIndex + 1) * promo * 1000).toFixed();
+      animateTotalValue(total);
+    }
+  });
+}
+
+module.exports = calc;
 
 /***/ }),
 

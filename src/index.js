@@ -10,7 +10,8 @@
      showMoreStyles = require('./parts/showMoreStyles.js'),
      hoverImg = require('./parts/hoverImg.js'),
      filter = require('./parts/filter.js'),
-     modalPresent = require('./parts/modalPresent.js');
+     modalPresent = require('./parts/modalPresent.js'),
+     calc = require('./parts/calc.js');
    mainSlider();
    burgerMenu();
    feedbackSlider();
@@ -18,6 +19,7 @@
    hoverImg();
    filter('#portfolio .container', '.portfolio-menu li', '.portfolio-block');
    modalPresent();
+   calc();
 
 
  });
