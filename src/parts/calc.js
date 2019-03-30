@@ -33,8 +33,6 @@ function calc() {
         if (this.value == "IWANTPOPART") {
             promo = 0.7;
         }
-        console.log(sizeSelectedIndex);
-        console.log(materialSelectedIndex);
         if (sizeSelectedIndex == 0 || materialSelectedIndex == 0) {
             totalValue.textContent = 'Для расчета нужно выбрать размер картины и материал картины';
         } else if (Browser.IE) {
@@ -54,8 +52,6 @@ function calc() {
         if (promocode.value == "IWANTPOPART") {
             promo = 0.7;
         }
-        console.log(sizeSelectedIndex);
-        console.log(materialSelectedIndex);
         if (sizeSelectedIndex == 0 || materialSelectedIndex == 0) {
             totalValue.textContent = 'Для расчета нужно выбрать размер картины и материал картины';
         } else if (Browser.IE) {
@@ -75,8 +71,6 @@ function calc() {
         if (promocode.value == "IWANTPOPART") {
             promo = 0.7;
         }
-        console.log(sizeSelectedIndex);
-        console.log(materialSelectedIndex);
         if (sizeSelectedIndex == 0 || materialSelectedIndex == 0) {
             totalValue.textContent = 'Для расчета нужно выбрать размер картины и материал картины';
         } else if (Browser.IE) {
@@ -96,8 +90,6 @@ function calc() {
         if (promocode.value == "IWANTPOPART") {
             promo = 0.7;
         }
-        console.log(sizeSelectedIndex);
-        console.log(materialSelectedIndex);
         if (sizeSelectedIndex == 0 || materialSelectedIndex == 0) {
             totalValue.textContent = 'Для расчета нужно выбрать размер картины и материал картины';
         } else if (Browser.IE) {

@@ -166,7 +166,8 @@ window.addEventListener('DOMContentLoaded', function () {
       hoverImg = __webpack_require__(/*! ./parts/hoverImg.js */ "./src/parts/hoverImg.js"),
       filter = __webpack_require__(/*! ./parts/filter.js */ "./src/parts/filter.js"),
       modalPresent = __webpack_require__(/*! ./parts/modalPresent.js */ "./src/parts/modalPresent.js"),
-      calc = __webpack_require__(/*! ./parts/calc.js */ "./src/parts/calc.js");
+      calc = __webpack_require__(/*! ./parts/calc.js */ "./src/parts/calc.js"),
+      accordion = __webpack_require__(/*! ./parts/accordion.js */ "./src/parts/accordion.js");
 
   mainSlider();
   burgerMenu();
@@ -176,6 +177,7 @@ window.addEventListener('DOMContentLoaded', function () {
   filter('#portfolio .container', '.portfolio-menu li', '.portfolio-block');
   modalPresent();
   calc();
+  accordion();
 });
 
 if ('NodeList' in window && !NodeList.prototype.forEach) {
@@ -189,6 +191,19 @@ if ('NodeList' in window && !NodeList.prototype.forEach) {
     }
   };
 }
+
+/***/ }),
+
+/***/ "./src/parts/accordion.js":
+/*!********************************!*\
+  !*** ./src/parts/accordion.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function accordion() {}
+
+module.exports = accordion;
 
 /***/ }),
 
@@ -284,9 +299,6 @@ function calc() {
       promo = 0.7;
     }
 
-    console.log(sizeSelectedIndex);
-    console.log(materialSelectedIndex);
-
     if (sizeSelectedIndex == 0 || materialSelectedIndex == 0) {
       totalValue.textContent = 'Для расчета нужно выбрать размер картины и материал картины';
     } else if (Browser.IE) {
@@ -306,9 +318,6 @@ function calc() {
     if (promocode.value == "IWANTPOPART") {
       promo = 0.7;
     }
-
-    console.log(sizeSelectedIndex);
-    console.log(materialSelectedIndex);
 
     if (sizeSelectedIndex == 0 || materialSelectedIndex == 0) {
       totalValue.textContent = 'Для расчета нужно выбрать размер картины и материал картины';
@@ -330,9 +339,6 @@ function calc() {
       promo = 0.7;
     }
 
-    console.log(sizeSelectedIndex);
-    console.log(materialSelectedIndex);
-
     if (sizeSelectedIndex == 0 || materialSelectedIndex == 0) {
       totalValue.textContent = 'Для расчета нужно выбрать размер картины и материал картины';
     } else if (Browser.IE) {
@@ -352,9 +358,6 @@ function calc() {
     if (promocode.value == "IWANTPOPART") {
       promo = 0.7;
     }
-
-    console.log(sizeSelectedIndex);
-    console.log(materialSelectedIndex);
 
     if (sizeSelectedIndex == 0 || materialSelectedIndex == 0) {
       totalValue.textContent = 'Для расчета нужно выбрать размер картины и материал картины';
