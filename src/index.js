@@ -12,7 +12,10 @@
      filter = require('./parts/filter.js'),
      modalPresent = require('./parts/modalPresent.js'),
      calc = require('./parts/calc.js'),
-     accordion = require('./parts/accordion.js');
+     accordion = require('./parts/accordion.js'),
+     modalConsultation = require('./parts/modalConsultation.js'),
+     modalDesign = require('./parts/modalDesign.js'),
+     form = require('./parts/form.js');
    mainSlider();
    burgerMenu();
   //  feedbackSlider();
@@ -22,6 +25,9 @@
    modalPresent();
    calc();
    accordion();
+   modalConsultation();
+   modalDesign();
+   form();
 
 
  });
