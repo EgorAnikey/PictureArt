@@ -31,16 +31,20 @@ function form() {
         });
     }
 
-    let message = {
-        loading: 'Загрузка...',
-        success: 'Спасибо! Скоро мы с вами свяжемся!',
-        failure: 'Что-то пошло не так...'
-    };
+    function append(parent, child) {
+        parent.appendChild(child);
+        child.style.display = 'block';
+        setTimeout(() => {
+            child.style.display = 'none';
+            parent.firstElementChild.style.display = 'block';
+        }, 2000);
+    }
+
     let mainForm = document.querySelectorAll('form'),
         inputPhone = document.querySelectorAll('form input'),
         textarea = document.querySelectorAll('form textarea'),
         statusMessage = document.createElement('div');
-
+    statusMessage.classList.add('status');
 
     inputPhone.forEach((item) => {
         if (item.name == 'phone') {
@@ -98,24 +102,24 @@ function form() {
             postForm(formData)
                 .then(() => {
                     statusMessage.removeAttribute('class');
-                    statusMessage.classList.add('loadstatus');
-                    elem.appendChild(statusMessage);
+                    statusMessage.classList.add('status', 'loadstatus');
+                    append(elem, statusMessage);
                 })
                 .then(() => {
                     statusMessage.removeAttribute('class');
-                    statusMessage.classList.add('goodstatus');
+                    statusMessage.classList.add('status', 'goodstatus');
                     if (!elem.classList.contains('consultation-form') && !elem.classList.contains('form')) {
-                        elem.innerHTML = '';
+                        elem.firstElementChild.style.display = 'none';
                     }
-                    elem.appendChild(statusMessage);
+                    append(elem, statusMessage);
                 })
                 .catch(() => {
                     statusMessage.removeAttribute('class');
-                    statusMessage.classList.add('failstatus');
+                    statusMessage.classList.add('status', 'failstatus');
                     if (!elem.classList.contains('consultation-form' && !elem.classList.contains('form'))) {
-                        elem.innerHTML = '';
+                        elem.firstElementChild.style.display = 'none';
                     }
-                    elem.appendChild(statusMessage);
+                    append(elem, statusMessage);
                 })
                 .then(clearInput);
         });

@@ -2018,15 +2018,20 @@ function form() {
     });
   }
 
-  var message = {
-    loading: 'Загрузка...',
-    success: 'Спасибо! Скоро мы с вами свяжемся!',
-    failure: 'Что-то пошло не так...'
-  };
+  function append(parent, child) {
+    parent.appendChild(child);
+    child.style.display = 'block';
+    setTimeout(function () {
+      child.style.display = 'none';
+      parent.firstElementChild.style.display = 'block';
+    }, 2000);
+  }
+
   var mainForm = document.querySelectorAll('form'),
       inputPhone = document.querySelectorAll('form input'),
       textarea = document.querySelectorAll('form textarea'),
       statusMessage = document.createElement('div');
+  statusMessage.classList.add('status');
   inputPhone.forEach(function (item) {
     if (item.name == 'phone') {
       prettyMask(item);
@@ -2088,26 +2093,26 @@ function form() {
 
       postForm(formData).then(function () {
         statusMessage.removeAttribute('class');
-        statusMessage.classList.add('loadstatus');
-        elem.appendChild(statusMessage);
+        statusMessage.classList.add('status', 'loadstatus');
+        append(elem, statusMessage);
       }).then(function () {
         statusMessage.removeAttribute('class');
-        statusMessage.classList.add('goodstatus');
+        statusMessage.classList.add('status', 'goodstatus');
 
         if (!elem.classList.contains('consultation-form') && !elem.classList.contains('form')) {
-          elem.innerHTML = '';
+          elem.firstElementChild.style.display = 'none';
         }
 
-        elem.appendChild(statusMessage);
+        append(elem, statusMessage);
       }).catch(function () {
         statusMessage.removeAttribute('class');
-        statusMessage.classList.add('failstatus');
+        statusMessage.classList.add('status', 'failstatus');
 
         if (!elem.classList.contains( true && !elem.classList.contains('form'))) {
-          elem.innerHTML = '';
+          elem.firstElementChild.style.display = 'none';
         }
 
-        elem.appendChild(statusMessage);
+        append(elem, statusMessage);
       }).then(clearInput);
     });
   } //sendForm
@@ -2257,7 +2262,6 @@ function modalConsultation() {
   var btnConsultation = document.querySelectorAll('.button-consultation'),
       modalConsultation = document.querySelector('.popup-consultation'),
       allModalWindow = document.querySelectorAll('.modal-window'),
-      clone = modalConsultation.querySelector('form').firstElementChild.cloneNode(true),
       temp = 0; //60 sec modalConsultation
 
   setTimeout(function () {
@@ -2282,8 +2286,14 @@ function modalConsultation() {
     if (e.target.classList.contains('popup-consultation') || e.target.classList.contains('popup-close')) {
       document.body.style.overflow = '';
       modalConsultation.style.display = 'none';
-      modalConsultation.querySelector('form').innerHTML = '';
-      modalConsultation.querySelector('form').appendChild(clone);
+      modalConsultation.querySelector('form').firstElementChild.style.display = 'block';
+      modalConsultation.querySelectorAll('form input').forEach(function (item) {
+        item.value = '';
+      });
+
+      if (modalConsultation.querySelector('form').lastElementChild.classList.contains('status')) {
+        modalConsultation.querySelector('form').lastElementChild.style.display = 'none';
+      }
     }
   });
 }
@@ -2301,8 +2311,7 @@ module.exports = modalConsultation;
 
 function modalDesign() {
   var btnDesign = document.querySelectorAll('.button-design'),
-      modalDesign = document.querySelector('.popup-design'),
-      clone = modalDesign.querySelector('form').firstElementChild.cloneNode(true);
+      modalDesign = document.querySelector('.popup-design');
   btnDesign.forEach(function (item) {
     item.addEventListener('click', function () {
       modalDesign.style.display = 'block';
@@ -2313,8 +2322,14 @@ function modalDesign() {
     if (e.target.classList.contains('popup-design') || e.target.classList.contains('popup-close')) {
       document.body.style.overflow = '';
       modalDesign.style.display = 'none';
-      modalDesign.querySelector('form').innerHTML = '';
-      modalDesign.querySelector('form').appendChild(clone);
+      modalDesign.querySelector('form').firstElementChild.style.display = 'block';
+      modalDesign.querySelectorAll('form input').forEach(function (item) {
+        item.value = '';
+      });
+
+      if (modalDesign.querySelector('form').lastElementChild.classList.contains('status')) {
+        modalDesign.querySelector('form').lastElementChild.style.display = 'none';
+      }
     }
   });
 }

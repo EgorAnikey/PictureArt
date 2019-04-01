@@ -1,7 +1,6 @@
 function modalDesign() {
     let btnDesign = document.querySelectorAll('.button-design'),
-        modalDesign = document.querySelector('.popup-design'),
-        clone = modalDesign.querySelector('form').firstElementChild.cloneNode(true);
+        modalDesign = document.querySelector('.popup-design');
 
     btnDesign.forEach((item) => {
         item.addEventListener('click', () => {
@@ -14,8 +13,13 @@ function modalDesign() {
         if (e.target.classList.contains('popup-design') || e.target.classList.contains('popup-close')) {
             document.body.style.overflow = '';
             modalDesign.style.display = 'none';
-            modalDesign.querySelector('form').innerHTML = '';
-            modalDesign.querySelector('form').appendChild(clone);
+            modalDesign.querySelector('form').firstElementChild.style.display = 'block';
+            modalDesign.querySelectorAll('form input').forEach((item) => {
+                item.value = '';
+            });
+            if (modalDesign.querySelector('form').lastElementChild.classList.contains('status')) {
+                modalDesign.querySelector('form').lastElementChild.style.display = 'none';
+            }
         }
     });
 }
