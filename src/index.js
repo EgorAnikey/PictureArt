@@ -18,7 +18,7 @@
      form = require('./parts/form.js');
    mainSlider();
    burgerMenu();
-  //  feedbackSlider();
+   feedbackSlider();
    showMoreStyles();
    hoverImg();
    filter('#portfolio .container', '.portfolio-menu li', '.portfolio-block');

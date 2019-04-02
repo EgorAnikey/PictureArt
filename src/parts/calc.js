@@ -82,7 +82,7 @@ function calc() {
         }
     });
 
-    options.addEventListener('change', function () {
+    option.addEventListener('change', function () {
         let optionSelectedIndex = this.options.selectedIndex,
             sizeSelectedIndex = size.options.selectedIndex,
             materialSelectedIndex = material.options.selectedIndex,

@@ -1,62 +1,44 @@
 function getmainSlider() {
-
-    let slideIndex = 0,
-        slides = document.querySelectorAll('.main-slider-item'),
+    let slides = document.querySelectorAll('.main-slider-item'),
         mainSlider = document.querySelector('.main-slider'),
-        temp = 0;
+        slideIndex = 0;
     mainSlider.style.overflow = 'hidden';
+    mainSlider.style.height = slides[0].offsetHeight + 'px';
+    slides.forEach((item, i) => {
+        if (i != 0) {
+            item.classList.remove('slideInDown', 'slideOutDown');
+            item.style.visibility = 'hidden';
+            item.style.marginTop = -item.offsetHeight + 'px';
+        }
+    });
 
-
-    function animation() {
-        slides[temp].style.display = 'block';
-        let i = 2;
-        setInterval(() => {
-
-            slides.forEach((item) => item.style.display = 'none');
-            slides[temp].style.display = 'block';
-            mainSlider.style.height = slides[temp].offsetHeight + 'px';
-            let slideoff = slides[temp];
-            temp++;
-            if (temp == slides.length) {
-                temp = 0;
-                i = 1;
-            }
-            slides[temp].style.display = 'block';
-            let slideon = slides[temp];
-            let top = -slideon.offsetHeight * i;
-            let a = -slideon.offsetHeight;
-            let down = 0;
-            slideon.style.transform = `translateY(${-slideon.offsetHeight*i + 'px'})`;
-            if (temp == 0) {
-                a = 0;
-                down = -slideon.offsetHeight;
-            }
-            let id = setInterval(start, 5);
-
-            function start() {
-
-                top += 5;
-                down += 5;
-                if (top < a) {
-                    slideon.style.transform = `translateY(${top + 'px'})`;
-                    slideoff.style.transform = `translateY(${down + 'px'})`;
-                } else {
-                    slideoff.style.transform = `translateY(0)`;
-                    slideoff.style.display = 'none';
-
-                    slideon.style.transform = `translateY(0)`;
-                    i = 2;
-                    clearInterval(id);
-                }
-            }
-        }, 3000);
+    function animate(slide, j) {
+        slide[j].style.visibility = 'visible';
+        if (slide[j].classList.contains('slideInDown')) {
+            slide[j].classList.remove('slideInDown');
+        }
+        slide[j].classList.add('slideOutDown');
+        j--;
+        if (j < 0) {
+            j = slide.length - 1;
+        }
+        slide[j].style.visibility = 'visible';
+        if (slide[j].classList.contains('slideOutDown')) {
+            slide[j].classList.remove('slideOutDown');
+        }
+        slide[j].classList.add('slideInDown');
     }
-    showSlides();
+    setTimeout(function start() {
+        showAnimate();
+        setTimeout(start, 2500);
+    }, 2500);
 
-    function showSlides() {
-
-        slides.forEach((item) => item.style.display = 'none');
-        animation();
+    function showAnimate() {
+        animate(slides, slideIndex);
+        slideIndex--;
+        if (slideIndex < 0) {
+            slideIndex = slides.length - 1;
+        }
     }
 }
 module.exports = getmainSlider;

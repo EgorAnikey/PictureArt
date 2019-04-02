@@ -1562,8 +1562,8 @@ window.addEventListener('DOMContentLoaded', function () {
       form = __webpack_require__(/*! ./parts/form.js */ "./src/parts/form.js");
 
   mainSlider();
-  burgerMenu(); //  feedbackSlider();
-
+  burgerMenu();
+  feedbackSlider();
   showMoreStyles();
   hoverImg();
   filter('#portfolio .container', '.portfolio-menu li', '.portfolio-block');
@@ -1813,7 +1813,7 @@ function calc() {
       animateTotalValue(total);
     }
   });
-  options.addEventListener('change', function () {
+  option.addEventListener('change', function () {
     var optionSelectedIndex = this.options.selectedIndex,
         sizeSelectedIndex = size.options.selectedIndex,
         materialSelectedIndex = material.options.selectedIndex,
@@ -1847,70 +1847,87 @@ module.exports = calc;
 /***/ (function(module, exports) {
 
 function feedbackSlider() {
-  // console.log(1);
   var slideIndex = 0,
       slides = document.querySelectorAll('.feedback-slider-item'),
       mainSlider = document.querySelector('.feedback-slider'),
-      temp = 0; // mainSlider.style.overflow = 'hidden';
+      btnNext = document.querySelector('.main-next-btn'),
+      btnPrev = document.querySelector('.main-prev-btn');
+  mainSlider.style.overflow = 'hidden';
+  slides.forEach(function (item, i) {
+    if (i != 0) {
+      item.classList.remove('slideInDown', 'slideOutDown');
+      item.style.visibility = 'hidden';
+      item.style.marginTop = -item.offsetHeight + 'px';
+    }
+  });
 
-  function animation() {
-    slides[temp].style.display = 'block';
-    var i = 1;
-    setInterval(function () {
-      slides.forEach(function (item) {
-        return item.style.display = 'none';
-      });
-      slides[temp].style.display = 'block'; // mainSlider.style.height = slides[temp].offsetHeight + 'px';
+  function animate(slide, j, prev) {
+    if (prev == undefined) {
+      slide[j].style.visibility = 'visible';
+      slide[j].classList.remove('slideInRight', 'slideInLeft');
+      slide[j].classList.add('slideOutLeft');
+      j++;
 
-      var slideoff = slides[temp];
-      temp--;
-
-      if (temp < 0) {
-        temp = slides.length - 1;
-        i = 1;
+      if (j == slide.length) {
+        j = 0;
       }
 
-      slides[temp].style.display = 'block';
-      var slideon = slides[temp];
-      var top = -slideon.offsetWidth * i;
-      var a = -slideon.offsetWidth;
-      var down = 0;
-      slideon.style.transform = "translate(".concat(-slideon.offsetWidth * i + 'px', ", ").concat(-slideon.offsetHeight * i + 'px', ")"); // console.log(slideon);
-      // slideoff.style.transform = `translateX(${-slideoff.offsetWidth*i + 'px'})`;
+      slide[j].style.visibility = 'visible';
+      slide[j].classList.remove('slideOutLeft', 'slideOutRight');
+      slide[j].classList.add('slideInRight');
+    } else {
+      slide[j].style.visibility = 'visible';
+      slide[j].classList.remove('slideInLeft', 'slideInRight');
+      slide[j].classList.add('slideOutRight');
+      j--;
 
-      if (temp == 0) {
-        a = 0;
-        down = -slideon.offsetWidth;
+      if (j < 0) {
+        j = slide.length - 1;
       }
 
-      var id = setInterval(start, 5);
-
-      function start() {
-        top += 5;
-        down += 5;
-
-        if (top < a) {
-          slideon.style.transform = "translateX(".concat(top + 'px', ")");
-          slideoff.style.transform = "translateX(".concat(down + 'px', ")");
-        } else {
-          slideoff.style.transform = "translateX(0)";
-          slideoff.style.display = 'none';
-          slideon.style.transform = "translateX(0)";
-          i = 2;
-          clearInterval(id);
-        }
-      }
-    }, 3000);
+      slide[j].style.visibility = 'visible';
+      slide[j].classList.remove('slideOutRight', 'slideOutLeft');
+      slide[j].classList.add('slideInLeft');
+    }
   }
 
-  showSlides();
+  function showAnimate() {
+    animate(slides, slideIndex);
+    slideIndex++;
 
-  function showSlides() {
-    slides.forEach(function (item) {
-      return item.style.display = 'none';
-    });
-    animation();
+    if (slideIndex == slides.length) {
+      slideIndex = 0;
+    }
   }
+
+  function nextSlide() {
+    animate(slides, slideIndex);
+    slideIndex++;
+
+    if (slideIndex == slides.length) {
+      slideIndex = 0;
+    }
+  }
+
+  function prevSlide() {
+    animate(slides, slideIndex, 1);
+    slideIndex--;
+
+    if (slideIndex < 0) {
+      slideIndex = slides.length - 1;
+    }
+  }
+
+  btnNext.addEventListener('click', function () {
+    nextSlide();
+  });
+  btnPrev.addEventListener('click', function () {
+    prevSlide();
+  });
+  setTimeout(function start() {
+    showAnimate();
+    setTimeout(start, 5000);
+  }, 5000);
 }
 
 module.exports = feedbackSlider;
@@ -2182,68 +2199,54 @@ module.exports = hoverImg;
 /***/ (function(module, exports) {
 
 function getmainSlider() {
-  var slideIndex = 0,
-      slides = document.querySelectorAll('.main-slider-item'),
+  var slides = document.querySelectorAll('.main-slider-item'),
       mainSlider = document.querySelector('.main-slider'),
-      temp = 0;
+      slideIndex = 0;
   mainSlider.style.overflow = 'hidden';
+  mainSlider.style.height = slides[0].offsetHeight + 'px';
+  slides.forEach(function (item, i) {
+    if (i != 0) {
+      item.classList.remove('slideInDown', 'slideOutDown');
+      item.style.visibility = 'hidden';
+      item.style.marginTop = -item.offsetHeight + 'px';
+    }
+  });
 
-  function animation() {
-    slides[temp].style.display = 'block';
-    var i = 2;
-    setInterval(function () {
-      slides.forEach(function (item) {
-        return item.style.display = 'none';
-      });
-      slides[temp].style.display = 'block';
-      mainSlider.style.height = slides[temp].offsetHeight + 'px';
-      var slideoff = slides[temp];
-      temp++;
+  function animate(slide, j) {
+    slide[j].style.visibility = 'visible';
 
-      if (temp == slides.length) {
-        temp = 0;
-        i = 1;
-      }
+    if (slide[j].classList.contains('slideInDown')) {
+      slide[j].classList.remove('slideInDown');
+    }
 
-      slides[temp].style.display = 'block';
-      var slideon = slides[temp];
-      var top = -slideon.offsetHeight * i;
-      var a = -slideon.offsetHeight;
-      var down = 0;
-      slideon.style.transform = "translateY(".concat(-slideon.offsetHeight * i + 'px', ")");
+    slide[j].classList.add('slideOutDown');
+    j--;
 
-      if (temp == 0) {
-        a = 0;
-        down = -slideon.offsetHeight;
-      }
+    if (j < 0) {
+      j = slide.length - 1;
+    }
 
-      var id = setInterval(start, 5);
+    slide[j].style.visibility = 'visible';
 
-      function start() {
-        top += 5;
-        down += 5;
+    if (slide[j].classList.contains('slideOutDown')) {
+      slide[j].classList.remove('slideOutDown');
+    }
 
-        if (top < a) {
-          slideon.style.transform = "translateY(".concat(top + 'px', ")");
-          slideoff.style.transform = "translateY(".concat(down + 'px', ")");
-        } else {
-          slideoff.style.transform = "translateY(0)";
-          slideoff.style.display = 'none';
-          slideon.style.transform = "translateY(0)";
-          i = 2;
-          clearInterval(id);
-        }
-      }
-    }, 3000);
+    slide[j].classList.add('slideInDown');
   }
 
-  showSlides();
+  setTimeout(function start() {
+    showAnimate();
+    setTimeout(start, 2500);
+  }, 2500);
 
-  function showSlides() {
-    slides.forEach(function (item) {
-      return item.style.display = 'none';
-    });
-    animation();
+  function showAnimate() {
+    animate(slides, slideIndex);
+    slideIndex--;
+
+    if (slideIndex < 0) {
+      slideIndex = slides.length - 1;
+    }
   }
 }
 

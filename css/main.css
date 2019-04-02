@@ -999,6 +999,9 @@ h4 {
   position: relative;
   right: -10rem;
 }
+.feedback-container{
+  position: relative;
+}
 
 .feedback {
   background-color: #f7e7e6;
@@ -1007,6 +1010,10 @@ h4 {
 
 .feedback-slider-item {
   padding-bottom: 5rem;
+}
+.feedback-slider{
+  display: flex;
+    flex-direction: column;
 }
 
 .feedback-block {
