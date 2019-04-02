@@ -16,25 +16,29 @@ function feedbackSlider() {
     function animate(slide, j, prev) {
         if (prev == undefined) {
             slide[j].style.visibility = 'visible';
-            slide[j].classList.remove('slideInRight', 'slideInLeft');
+            slide[j].classList.remove('slideInRight');
+            slide[j].classList.remove('slideInLeft');
             slide[j].classList.add('slideOutLeft');
             j++;
             if (j == slide.length) {
                 j = 0;
             }
             slide[j].style.visibility = 'visible';
-            slide[j].classList.remove('slideOutLeft', 'slideOutRight');
+            slide[j].classList.remove('slideOutRight');
+            slide[j].classList.remove('slideOutLeft');
             slide[j].classList.add('slideInRight');
         } else {
             slide[j].style.visibility = 'visible';
-            slide[j].classList.remove('slideInLeft', 'slideInRight');
+            slide[j].classList.remove('slideInRight');
+            slide[j].classList.remove('slideInLeft');
             slide[j].classList.add('slideOutRight');
             j--;
             if (j < 0) {
                 j = slide.length - 1;
             }
             slide[j].style.visibility = 'visible';
-            slide[j].classList.remove('slideOutRight', 'slideOutLeft');
+            slide[j].classList.remove('slideOutRight');
+            slide[j].classList.remove('slideOutLeft');
             slide[j].classList.add('slideInLeft');
         }
     }
@@ -62,6 +66,7 @@ function feedbackSlider() {
             slideIndex = slides.length - 1;
         }
     }
+
     btnNext.addEventListener('click', () => {
         nextSlide();
     });
